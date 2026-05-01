@@ -4,7 +4,7 @@ const CONFIG = {
   ORGAN_COLOR: 0x00ffff, // Warna wireframe (hex) — cyan
   ORGAN_OPACITY: 0.15, // Transparansi model solid
   ROTATION_SPEED: 0.3, // Kecepatan rotasi animasi (radian/detik)
-  ORGAN_SCALE: 0.5, // Skala model (sesuaikan per model)
+  ORGAN_SCALE: 0.05, // Skala model (sesuaikan per model)
   SHOW_LABEL: true, // Tampilkan label nama organ
 };
 
