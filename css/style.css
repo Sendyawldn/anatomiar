@@ -1,0 +1,28 @@
+/* css/style.css */
+body {
+  margin: 0;
+  overflow: hidden;
+  background-color: #111; /* Latar belakang gelap saat kamera belum siap */
+}
+
+#container {
+  width: 100vw;
+  height: 100vh;
+  position: relative;
+}
+
+#ui-overlay {
+  position: absolute;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(0, 0, 0, 0.7);
+  color: #00ffff; /* Warna teks Cyan senada dengan wireframe */
+  padding: 10px 25px;
+  border-radius: 8px;
+  font-family: monospace;
+  font-size: 18px;
+  border: 1px solid #00ffff;
+  z-index: 10;
+  pointer-events: none; /* Agar tidak memblokir sentuhan ke kanvas 3D */
+}

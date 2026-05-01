@@ -1,0 +1,52 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>AnatomAR</title>
+
+    <link rel="stylesheet" href="./css/style.css" />
+
+    <!-- IMPORT MAP: Daftarkan Three.js dan MindAR di sini -->
+    <script type="importmap">
+      {
+        "imports": {
+          "three": "https://unpkg.com/three@0.128.0/build/three.module.js",
+          "three/addons/": "https://unpkg.com/three@0.128.0/examples/jsm/",
+          "three/examples/jsm/loaders/GLTFLoader.js": "https://unpkg.com/three@0.128.0/examples/jsm/loaders/GLTFLoader.js",
+          "mindar-image-three": "https://cdn.jsdelivr.net/npm/mind-ar@1.2.5/dist/mindar-image-three.prod.js"
+        }
+      }
+    </script>
+  </head>
+  <body style="margin: 0; overflow: hidden">
+    <div id="container"></div>
+    <div id="ui-overlay">Arahkan ke gambar anatomi</div>
+    <div id="container" style="width: 100vw; height: 100vh"></div>
+
+    <script type="module">
+      // Import langsung dari Import Map, bukan dari window
+      import { MindARThree } from "mindar-image-three";
+      import { loadOrgan } from "./js/organ-loader.js";
+      import CONFIG from "./js/config.js";
+
+      // Inisialisasi MindAR (tanpa window.MINDAR.IMAGE)
+      const mindarThree = new MindARThree({
+        container: document.querySelector("#container"),
+        imageTargetSrc: CONFIG.MARKER_PATH,
+      });
+
+      const { renderer, scene, camera } = mindarThree;
+      const anchor = mindarThree.addAnchor(0);
+
+      // Load 3D model organ
+      loadOrgan("./assets/models/heart.glb", anchor.group);
+
+      // Jalankan AR
+      await mindarThree.start();
+      renderer.setAnimationLoop(() => {
+        renderer.render(scene, camera);
+      });
+    </script>
+  </body>
+</html>
